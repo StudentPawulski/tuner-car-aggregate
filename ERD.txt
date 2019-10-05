@@ -10,24 +10,19 @@ cards into sets and colours
 I plan to have a database with the main table being called:
 
 car listing:
-id:              int             PK
+Title:           varchar
 Make:            varchar         FK
 Model:           varchar         FK
-Year:            int             FK
-Kms:             int
+URL:             varchar
 Price:           float
-Transmission:    varchar         FK
-image_urls:      varchar
-Details:         varchar
+Desription:      text
+Location:        varchar
+image_url:       varchar
+
+
 
 Make:
 Name:            varchar         PK, FK
 
 Model:
 Name:            varchar         PK, FK
-
-Transmission:
-Type:            varchar         PK, FK
-
-Year:
-Type:            int             PK, FK
