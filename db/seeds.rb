@@ -41,11 +41,11 @@ KIJIJI = 'https://www.kijiji.ca'
 listing_counter = 0
 
 manitoba_codes.each do |prov, pcode|
-  province = Province.find_or_create_by(prov)
+  province = Province.find_or_create_by(name: prov)
   mazda_hash.each do |makes, models|
-    make = Make.find_or_create_by(makes)
+    make = Make.find_or_create_by(name: makes)
     models[:model].each do |mode|
-      model = Model.find_or_create_by(mode)
+      model = Model.find_or_create_by(name: mode)
 
       page = Nokogiri::HTML(RestClient.get("#{KIJIJI}/b-#{prov}/#{makes}-#{mode}/#{pcode}?dc=true"))
 
