@@ -62,7 +62,8 @@ manitoba_codes.each do |prov, pcode|
                        url: "#{KIJIJI}/#{listing.css('div.title a').attr('href')}",
                        price: price,
                        description: listing.css('div.description').text.strip,
-                       location: listing.css('div.location').text.strip,
+                       location: province,
+                       # location: listing.css('div.location').text.strip,
                        image_url: listing.css('div.image img').attr('src'))
       end
     end
