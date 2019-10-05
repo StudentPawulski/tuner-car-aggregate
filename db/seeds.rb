@@ -40,29 +40,44 @@ KIJIJI = 'https://www.kijiji.ca'
 
 listing_counter = 0
 
-manitoba_codes.each do |province, pcode|
-  mazda_hash.each do |make, models|
-    models[:model].each do |model|
-      page = Nokogiri::HTML(RestClient.get("#{KIJIJI}/b-#{province}/#{make}-#{model}/#{pcode}?dc=true"))
+manitoba_codes.each do |prov, pcode|
+  province = Provinces.find_or_create_by(prov)
+  mazda_hash.each do |makes, models|
+    make = Make.find_or_create_by(makes)
+    models[:model].each do |mode|
+      model = Model.find_or_create_by(mode)
+
+      page = Nokogiri::HTML(RestClient.get("#{KIJIJI}/b-#{prov}/#{makes}-#{mode}/#{pcode}?dc=true"))
 
       listings = page.css('div.clearfix')
 
       # links = []
 
       listings.each do |listing|
-        puts listing.css('div.title').css('a').text.strip
-        puts "Link to car: #{KIJIJI}/#{listing.css('div.title a').attr('href')}"
-        puts listing.css('div.price').text.strip
-        puts listing.css('div.description').text.strip
-        puts listing.css('div.location').text.strip
-        puts listing.css('div.image img').attr('src')
-        puts ''
-        listing_counter += 1
+        price = currency_to_number(listing.css('div.price').text.strip)
+
+        Listing.create(title: listing.css('div.title').css('a').text.strip,
+                       make: make,
+                       model: model,
+                       url: "#{KIJIJI}/#{listing.css('div.title a').attr('href')}",
+                       price: price,
+                       description: listing.css('div.description').text.strip,
+                       location: listing.css('div.location').text.strip,
+                       image_url: listing.css('div.image img').attr('src'))
       end
     end
   end
 end
 
-puts listing_counter
-puts listing_counter
-puts listing_counter
+def currency_to_number(currency)
+  currency.to_s.gsub(/[$,]/, '').to_f
+end
+
+#   puts listing.css('div.title').css('a').text.strip
+#   puts "Link to car: #{KIJIJI}/#{listing.css('div.title a').attr('href')}"
+#   puts listing.css('div.price').text.strip
+#   puts listing.css('div.description').text.strip
+#   puts listing.css('div.location').text.strip
+#   puts listing.css('div.image img').attr('src')
+#   puts ''
+#   listing_counter += 1
