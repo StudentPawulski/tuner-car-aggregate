@@ -36,6 +36,10 @@ manitoba_codes = {
   'manitoba' => 'k0l9006'
 }
 
+def currency_to_number(currency)
+  currency.to_s.gsub(/[$,]/, '').to_f
+end
+
 KIJIJI = 'https://www.kijiji.ca'
 
 listing_counter = 0
@@ -68,10 +72,6 @@ manitoba_codes.each do |prov, pcode|
       end
     end
   end
-end
-
-def currency_to_number(currency)
-  currency.to_s.gsub(/[$,]/, '').to_f
 end
 
 #   puts listing.css('div.title').css('a').text.strip
