@@ -41,7 +41,7 @@ KIJIJI = 'https://www.kijiji.ca'
 listing_counter = 0
 
 manitoba_codes.each do |prov, pcode|
-  province = Provinces.find_or_create_by(prov)
+  province = Province.find_or_create_by(prov)
   mazda_hash.each do |makes, models|
     make = Make.find_or_create_by(makes)
     models[:model].each do |mode|
