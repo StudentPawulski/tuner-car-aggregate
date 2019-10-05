@@ -7,6 +7,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Listing.destroy_all
+Province.destroy_all
+Model.destroy_all
+Make.destroy_all
+
 require 'nokogiri'
 require 'open-uri'
 require 'restclient'
@@ -44,9 +50,9 @@ KIJIJI = 'https://www.kijiji.ca'
 
 listing_counter = 0
 
-manitoba_codes.each do |prov, pcode|
+province_codes.each do |prov, pcode|
   province = Province.find_or_create_by(name: prov)
-  mazda_hash.each do |makes, models|
+  cars_hash.each do |makes, models|
     make = Make.find_or_create_by(name: makes)
     models[:model].each do |mode|
       model = Model.find_or_create_by(name: mode)
