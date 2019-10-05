@@ -1,0 +1,27 @@
+<h1>Listings</h1>
+  <p>
+    <strong>Total number of listings: </strong>
+    <%= @count %>
+  </p>
+  <h2>Listings:</h2>
+  <% @listings.each do |listing| %>
+    <h3>Listing:   <%= listing.title.humanize%></h3>
+    <p>
+      <strong>Make: </strong>
+      <%= listing.make.name.humanize %>
+    </p>
+    <p>
+      <strong>Model: </strong>
+      <%= listing.model.name.humanize %>
+    </p>
+    <p>
+      <strong>Description: </strong>
+      <%= listing.description.humanize %>
+    </p>
+    <p>
+      <strong>Price: </strong>
+      <%= number_to_currency(listing.price) %>
+    </p>
+  <% end %>
+
+

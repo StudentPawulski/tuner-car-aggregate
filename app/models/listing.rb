@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Listing < ApplicationRecord
-  belongs_to :makes
-  belongs_to :models
-  belongs_to :provinces
+  belongs_to :make
+  belongs_to :model
+  belongs_to :province
 
-  validates :makes, :models, :url, presence: true
+  validates :make, :model, :province, :url, presence: true
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_05_191625) do
+ActiveRecord::Schema.define(version: 2019_10_05_204804) do
 
   create_table "listings", force: :cascade do |t|
     t.string "title"
@@ -19,10 +19,16 @@ ActiveRecord::Schema.define(version: 2019_10_05_191625) do
     t.string "url"
     t.float "price"
     t.text "description"
-    t.string "location"
+    t.string "province"
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "make_id"
+    t.integer "model_id"
+    t.integer "province_id"
+    t.index ["make_id"], name: "index_listings_on_make_id"
+    t.index ["model_id"], name: "index_listings_on_model_id"
+    t.index ["province_id"], name: "index_listings_on_province_id"
   end
 
   create_table "makes", force: :cascade do |t|
@@ -35,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_10_05_191625) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "make_id"
+    t.index ["make_id"], name: "index_models_on_make_id"
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -43,4 +51,8 @@ ActiveRecord::Schema.define(version: 2019_10_05_191625) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "listings", "makes"
+  add_foreign_key "listings", "models"
+  add_foreign_key "listings", "provinces"
+  add_foreign_key "models", "makes"
 end

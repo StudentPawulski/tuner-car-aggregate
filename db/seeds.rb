@@ -52,10 +52,15 @@ listing_counter = 0
 
 province_codes.each do |prov, pcode|
   province = Province.find_or_create_by(name: prov)
+  puts province.name
   cars_hash.each do |makes, models|
     make = Make.find_or_create_by(name: makes)
+    puts make.name
     models[:model].each do |mode|
-      model = Model.find_or_create_by(name: mode)
+      puts mode
+      model = Model.find_or_create_by(name: mode,
+                                      make: make)
+      puts model.name
 
       page = Nokogiri::HTML(RestClient.get("#{KIJIJI}/b-#{prov}/#{makes}-#{mode}/#{pcode}?dc=true"))
 
@@ -66,19 +71,25 @@ province_codes.each do |prov, pcode|
       listings.each do |listing|
         price = currency_to_number(listing.css('div.price').text.strip)
 
-        Listing.create(title: listing.css('div.title').css('a').text.strip,
-                       make: make,
-                       model: model,
-                       url: "#{KIJIJI}/#{listing.css('div.title a').attr('href')}",
-                       price: price,
-                       description: listing.css('div.description').text.strip,
-                       location: province,
-                       # location: listing.css('div.location').text.strip,
-                       image_url: listing.css('div.image img').attr('src'))
+        list = Listing.create(title: listing.css('div.title').css('a').text.strip,
+                              make: make,
+                              model: model,
+                              url: "#{KIJIJI}/#{listing.css('div.title a').attr('href')}",
+                              price: price,
+                              description: listing.css('div.description').text.strip,
+                              province: province,
+                              image_url: listing.css('div.image img').attr('src'))
+
+        puts list.title
       end
     end
   end
 end
+
+puts "Generated #{Province.count} provinces."
+puts "Generated #{Make.count} makes."
+puts "Generated #{Model.count} models."
+puts "Generated #{Listing.count} listings."
 
 #   puts listing.css('div.title').css('a').text.strip
 #   puts "Link to car: #{KIJIJI}/#{listing.css('div.title a').attr('href')}"
