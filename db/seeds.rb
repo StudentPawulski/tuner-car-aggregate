@@ -12,11 +12,11 @@ require 'open-uri'
 require 'restclient'
 require 'pp'
 
-province_codes = { 'b-british-columbia' => 'k0l9007',
-                   'b-alberta' => 'k0l9003',
-                   'b-saskatchewan' => 'k0l9009',
-                   'b-manitoba' => 'k0l9006',
-                   'b-ontario' => 'k0l9004' }
+province_codes = { 'british-columbia' => 'k0l9007',
+                   'alberta' => 'k0l9003',
+                   'saskatchewan' => 'k0l9009',
+                   'manitoba' => 'k0l9006',
+                   'ontario' => 'k0l9004' }
 
 cars_hash = {
   mazda: { model: %w[mx5 rx7] },
@@ -33,7 +33,7 @@ mazda_hash = {
 
 # For testing
 manitoba_codes = {
-  'b-manitoba' => 'k0l9006'
+  'manitoba' => 'k0l9006'
 }
 
 KIJIJI = 'https://www.kijiji.ca'
@@ -43,7 +43,7 @@ listing_counter = 0
 manitoba_codes.each do |province, pcode|
   mazda_hash.each do |make, models|
     models[:model].each do |model|
-      page = Nokogiri::HTML(RestClient.get("#{KIJIJI}/#{province}/#{make}-#{model}/#{pcode}?dc=true"))
+      page = Nokogiri::HTML(RestClient.get("#{KIJIJI}/b-#{province}/#{make}-#{model}/#{pcode}?dc=true"))
 
       listings = page.css('div.clearfix')
 
