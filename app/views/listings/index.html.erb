@@ -8,11 +8,11 @@
     <h3>Listing:   <%= listing.title.humanize%></h3>
     <p>
       <strong>Make: </strong>
-      <%= listing.make.name.humanize %>
+      <%= link_to listing.make.name,  listing.make %>
     </p>
     <p>
       <strong>Model: </strong>
-      <%= listing.model.name.humanize %>
+      <%= link_to listing.model.name, listing.model %>
     </p>
     <p>
       <strong>Description: </strong>

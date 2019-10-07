@@ -1,0 +1,12 @@
+<h2><%= @make.name %></h2>
+
+<h4>List of Models:</h4>
+<ul>
+  <% @make.models.each do |model| %>
+    <li>
+      <strong>Model: </strong>
+      <%= link_to model.name.humanize, model %>
+    </p>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,20 @@
+<h1>Models#show</h1>
+<p>Find me in app/views/models/show.html.erb</p>
+
+<h2><%= @model.name %></h2>
+
+<h4>List of listings:</h4>
+<ul>
+<% model_listings = [] %>
+<% @listings.each do |listing| %>
+
+<% model_listings.append listing if listing.model.name.downcase == @model.name.downcase %>
+<% end %>
+  <% model_listings.each do |listing| %>
+    <li>
+      <strong>Model: </strong>
+      <%= link_to listing.title.humanize, listing %>
+    </p>
+    </li>
+  <% end %>
+</ul>

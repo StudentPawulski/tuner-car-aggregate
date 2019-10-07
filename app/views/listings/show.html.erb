@@ -1,1 +1,25 @@
-<h2><%= @listing.title%></h2>
+<h2><%= @listing.title.humanize%></h2>
+    <p>
+      <strong>Link to full listing on Kijiji: </strong>
+      <%= link_to @listing.url, @listing.url %>
+    </p>
+    <p>
+      <strong>Make: </strong>
+      <%= @listing.make.name.humanize %>
+    </p>
+    <p>
+      <strong>Model: </strong>
+      <%= @listing.model.name.humanize %>
+    </p>
+    <p>
+      <strong>Description: </strong>
+      <%= @listing.description.humanize %>
+    </p>
+    <p>
+      <strong>Price: </strong>
+      <%= number_to_currency(@listing.price) %>
+    </p>
+        <p>
+      <strong>Location: </strong>
+      <%= @listing.province.name.humanize %>
+    </p>
