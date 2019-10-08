@@ -70,11 +70,14 @@ province_codes.each do |prov, pcode|
 
       listings.each do |listing|
         price = currency_to_number(listing.css('div.price').text.strip)
+        description = listing.css('div.description').text.strip
+
+        next unless !description.nil? || !description.empty? || !description.eql?('')
 
         list = Listing.create(title: listing.css('div.title').css('a').text.strip,
                               make: make,
                               model: model,
-                              url: "#{KIJIJI}/#{listing.css('div.title a').attr('href')}",
+                              url: "#{KIJIJI}#{listing.css('div.title a').attr('href')}",
                               price: price,
                               description: listing.css('div.description').text.strip,
                               province: province,

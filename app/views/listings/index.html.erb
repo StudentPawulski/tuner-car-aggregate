@@ -14,6 +14,7 @@
       <strong>Model: </strong>
       <%= link_to listing.model.name, listing.model %>
     </p>
+    <img src="<%= listing.image_url %>" alt="<%= listing.model.name %>">
     <p>
       <strong>Description: </strong>
       <%= listing.description.humanize %>
@@ -26,6 +27,11 @@
       <strong>Location: </strong>
       <%= listing.province.name.humanize %>
     </p>
+    <p>
+      <strong>Link to full listing on Kijiji: </strong>
+      <%= link_to listing.url, listing.url %>
+    </p>
+    <hr>
   <% end %>
 
 
