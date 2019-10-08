@@ -23,12 +23,14 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
 
 # Nokogiri for web scraping
 gem 'httparty'
 gem 'nokogiri'
+gem 'kaminari'
 # gem 'open-uri'
-gem 'pry'
 gem 'rest-client'
 
 # Use Active Storage variant

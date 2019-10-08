@@ -2,7 +2,7 @@
 
 class ListingsController < ApplicationController
   def index
-    @listings = Listing.all
+    @listings = Listing.order(:province).page(params[:page])
     @count = Listing.count
     @models = Model.all
     @makes = Make.all

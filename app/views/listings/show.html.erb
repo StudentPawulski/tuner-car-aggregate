@@ -11,6 +11,7 @@
       <strong>Model: </strong>
       <%= @listing.model.name.humanize %>
     </p>
+        <img src="<%= @listing.image_url %>" alt="<%= @listing.model.name %>">
     <p>
       <strong>Description: </strong>
       <%= @listing.description.humanize %>

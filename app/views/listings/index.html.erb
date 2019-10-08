@@ -1,10 +1,22 @@
-<h1>Listings</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#"><strong>Super Sweet Japanese Tuner Cars For Sale</strong></a>
+ <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+<div class="container-fluid bg-light">
   <p>
-    <strong>Total number of listings: </strong>
+    <strong>Total number of listings from BC to Ontario: </strong>
     <%= @count %>
   </p>
   <h2>Listings:</h2>
+
+  <div class="container bg-primary">
+  <%= paginate @listings %>
   <% @listings.each do |listing| %>
+  <div class="container bg-white">
+
     <h3>Listing:   <%= listing.title.humanize%></h3>
     <p>
       <strong>Make: </strong>
@@ -23,15 +35,21 @@
       <strong>Price: </strong>
       <%= number_to_currency(listing.price) %>
     </p>
-        <p>
+    <p>
       <strong>Location: </strong>
       <%= listing.province.name.humanize %>
+    </p>
+    <p>
+      <strong>Link to car: </strong>
+      <%= link_to listing.model.name, listing %>
     </p>
     <p>
       <strong>Link to full listing on Kijiji: </strong>
       <%= link_to listing.url, listing.url %>
     </p>
-    <hr>
+    </div>
   <% end %>
+
+  </div>
 
 
