@@ -11,6 +11,7 @@ class ModelsController < ApplicationController
     # @make = Make.includes(:models).find(params[:id])
     @model = Model.includes(:make).find(params[:id])
     @listings = Listing.all
+    @provinces = Province.all
     # @modellisting = Model.includes(:listing).find(params[:id])
   end
 end

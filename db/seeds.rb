@@ -29,7 +29,8 @@ cars_hash = {
   nissan: { model: %w[silvia 240sx 180sx skyline] },
   toyoa: { model: %w[ae86 supra] },
   mitsubishi: { model: %w[evo 3000gt] },
-  honda: { model: %w[civic-type-r civic-sir] }
+  honda: { model: %w[civic-type-r civic-sir] },
+  subaru: { model: %w[sti wrx] }
 }
 
 # For testing
@@ -72,7 +73,7 @@ province_codes.each do |prov, pcode|
         price = currency_to_number(listing.css('div.price').text.strip)
         description = listing.css('div.description').text.strip
 
-        next unless !description.nil? || !description.empty? || !description.eql?('')
+        next if description.eql?('')
 
         list = Listing.create(title: listing.css('div.title').css('a').text.strip,
                               make: make,
@@ -93,12 +94,3 @@ puts "Generated #{Province.count} provinces."
 puts "Generated #{Make.count} makes."
 puts "Generated #{Model.count} models."
 puts "Generated #{Listing.count} listings."
-
-#   puts listing.css('div.title').css('a').text.strip
-#   puts "Link to car: #{KIJIJI}/#{listing.css('div.title a').attr('href')}"
-#   puts listing.css('div.price').text.strip
-#   puts listing.css('div.description').text.strip
-#   puts listing.css('div.location').text.strip
-#   puts listing.css('div.image img').attr('src')
-#   puts ''
-#   listing_counter += 1

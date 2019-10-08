@@ -1,12 +1,23 @@
+<style type="text/css">
+   body { background: #f8f9fa !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/listings/index"><strong>Super Sweet Japanese Tuner Cars For Sale</strong></a>
+  <%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline'} do |f| %>
+    <%= f.input :title, class: "form-control mr-sm-2", input_html: {value: ""} %>
+    <%= f.submit "Search", class: "btn btn-secondary my-2 my-sm-0" %>
+  <% end %>
+</nav>
+<div class="container-fluid bg-light">
 <h2><%= @make.name %></h2>
 
-<h4>List of Models:</h4>
+<h4>Models</h4>
 <ul>
   <% @make.models.each do |model| %>
     <li>
-      <strong>Model: </strong>
-      <%= link_to model.name.humanize, model %>
+      <strong><%= link_to model.name.humanize, model %></strong>
     </p>
     </li>
   <% end %>
 </ul>
+</div>

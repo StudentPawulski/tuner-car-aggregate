@@ -32,6 +32,7 @@ gem 'nokogiri'
 gem 'kaminari'
 # gem 'open-uri'
 gem 'rest-client'
+gem 'simple_form'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
