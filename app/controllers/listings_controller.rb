@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ListingsController < ApplicationController
+  # http_basic_authenticate_with name: 'ghostface', password: 'killa'
   def index
     @listings = Listing.order(:province).page(params[:page])
     @count = Listing.count
