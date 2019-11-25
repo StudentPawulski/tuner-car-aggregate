@@ -7,7 +7,7 @@ one:
   url: MyString
   price: 1.5
   description: MyText
-  location: MyString
+  province: MyString
   image_url: MyString
 
 two:
@@ -17,5 +17,5 @@ two:
   url: MyString
   price: 1.5
   description: MyText
-  location: MyString
+  province: MyString
   image_url: MyString
