@@ -36,6 +36,7 @@ COPY package.json package.json
 COPY yarn.lock yarn.lock
 
 RUN yarn install --check-files
+RUN yarn upgrade
 
 COPY . .
 RUN bundle exec rails assets:precompile
